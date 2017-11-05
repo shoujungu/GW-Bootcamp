@@ -2,11 +2,11 @@ import pandas as pd
 import numpy as np
 
 #Set variables
-budget1=r'/home/shoujun/Desktop/bootcamp/2017-11-03_Homework3/PyBank_raw_data/budget_data_1.csv'
-output_file=r'/home/shoujun/Desktop/bootcamp/budget_report.txt'
+input_file=r'/home/shoujun/Desktop/bootcamp/2017-11-03_Homework3/PyBank_raw_data/budget_data_1.csv'
+output_file=r'/home/shoujun/Desktop/budget_report.txt'
 
 #Read data
-bd1=pd.read_csv(budget1)
+bd1=pd.read_csv(input_file)
 
 #The total number of months included in the dataset
 total_month=bd1.shape[0]
@@ -44,6 +44,6 @@ line='\n'.join([line1, line2, line3, line4, line5, line6, line7])
 print(line)
 
 #Write output results to file
-with open(output_file, 'w') as file:
-    file.write(line)
+with open(output_file, 'w') as out:
+    out.write(line)
     
