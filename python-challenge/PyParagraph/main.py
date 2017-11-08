@@ -4,6 +4,7 @@ input_file=r'/home/shoujun/Desktop/bootcamp/2017-11-03_Homework3/PyParagraph_raw
 output_file=r'/home/shoujun/Desktop/report.txt'
 
 regex=re.compile(r'\b\w+\b')
+sen = re.compile(r'([A-Z][^\.!?]*[\.!?])', re.M)
 
 def word_c(sentence):
     l=re.findall(regex, sentence)
@@ -16,7 +17,7 @@ with open(input_file, 'r', encoding='utf-8') as file:
     wc=word_c(data) 
 
     #Sentence count
-    sen_list=data.split('.')[:-1]
+    sen_list=sen.findall(data)
     sc=len(sen_list)
     
     #Average Letter Count
