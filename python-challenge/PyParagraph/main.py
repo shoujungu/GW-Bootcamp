@@ -17,7 +17,7 @@ with open(input_file, 'r', encoding='utf-8') as file:
     wc=word_c(data) 
 
     #Sentence count
-    sen_list=sen.findall(data)
+    sen_list=re.findall(sen, data)
     sc=len(sen_list)
     
     #Average Letter Count
