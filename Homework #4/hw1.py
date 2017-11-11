@@ -114,4 +114,3 @@ df_pop_item=df_pop_item[['Item ID', 'Item Name', 'Purchase Count', 'Item Price',
 
 df_pro_item=df_pop_item.sort_values('Total Purchase Value',ascending=False).head(5)
 
-print(df_pro_item)
