@@ -102,7 +102,7 @@ plt.show()
 ```
 
 **Result Plots:**  
-![text](/home/shoujun/Desktop/bootcamp/GW-Bootcamp/Homework#6_API/Figure_1.png)  
+![Figure](Figure_1.png)  
 
 **Logs:**  
 Processing Record:1 | tuktoyaktuk,ca
