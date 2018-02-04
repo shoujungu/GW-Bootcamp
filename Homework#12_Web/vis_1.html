@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Latittude vs. Temperature</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" style="background-color: #ADD8E6" href="index.html">Latittude</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plots <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="vis_1.html">City Latittude vs Temperature</a></li>
+              <li><a href="vis_2.html">City Latittude vs Humidity</a></li>
+              <li><a href="vis_3.html">City Latittude vs Cloudness</a></li>
+              <li><a href="vis_4.html">City Latittude vs Windspeed</a></li>
+            </ul>
+          </li>
+          <li><a href="comparison.html">Comparison</a></li>
+          <li><a href="data.html">Data</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+         <div class="jumbotron">
+            <h2><font color="#2E86C1">Latittude vs. Temperature</font></h2>
+            <hr>
+             <img src="1_temp.png" alt="..." height="400" width="600">
+               <p>As expected, the weather becomes significantly warmer as one approaches the equator. More interestingly, however, is the fact that the southern hemisphere tends to be warmer this time of year than the northern hemisphere. This may be due to the tilt of the earth at the time of year this data  was gathered.</p>
+          </div>
+        </div>
+
+
+      <div class="col-md-4">
+        <h2><font color="#2E86C1">Visualization</font></h2>
+        <hr>
+        <div class="container">
+          <div class="row">
+            <div class="col"><img src="1_temp.png" alt="..." height="150" width="200" style="border: #00008B 4px solid;"></div>
+            <div class="col"><a href="vis_2.html"><img src="2_humi.png" alt="..." height="150" width="200"></a></div>
+          </div>
+          <div class="row">
+            <div class="col"><a href="vis_3.html"><img src="3_clou.png" alt="..." height="150" width="200"></a></div>
+            <div class="col"><a href="vis_4.html"><img src="4_wind.png" alt="..." height="150" width="200"></a></div>
+          </div>
+       </div> 
+    </div>
+  </div>
+
+    <div class="row">
+          <h3 style="background-color: #D3D3D3"><center>Copyright Coding Bootcamp 2017 </center></h3>
+    </div>
+
+</body>
+</html>
