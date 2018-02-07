@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1><center>Mission to Mars</center></h1>
+    <p><center><a class="btn btn-primary btn-lg" href="#" role="button">Scrape New Data</a></center></p>
+  </div>
+</div>
+
+<div class="container">
+  <div class='row'>
+    <h3>Featured Image</h3>
+  </div>
+    <hr>
+    <img src={{featured_image_url}}>
+</div>
+
+<div class="container">
+  <div class='row'>
+    <h3>Latest Mars News</h3>
+    <hr>
+    <h4>{{mng_latest[0]}}</h4>
+    {% for p in mng_latest[1].split('\n')%}
+    <p>{{p}}</p>
+    {% endfor %}
+  </div>
+</div>
+
+
+<div class="container">
+  <div class='row'>
+    <h3>Current Weather on Mars</h3>
+    <hr>
+    <p>{{mars_weather}}</p>    
+  </div>
+</div>
+
+
+<div class="container">
+  <div class='row'>
+    <h3>Mars Facts</h3>
+  </div>
+    <hr>
+  
+    <table>
+  <thead>
+    <th>{{mars_facts.columns[0]}}</th>
+    <th>{{mars_facts.columns[1]}}</th>
+  </thead>
+
+  <tbody>    
+    {% for row in mars_facts.iterrows() %}  
+    <tr>
+      <td>{{row[1]['key']}}</td>
+      <td>{{row[1]['value']}}</td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table> 
+</div>
+
+<div class="container">
+  <div class='row'>
+    <h3>Mars Hemispheres</h3>
+  </div>
+    <hr>
+
+<div class="container">
+  <div class="col-md-6">
+    <div class="thumbnail">
+      {% for d in hemisphere_image_urls %}
+      <img src="{{d['img_url']}}" alt="{{d['img_url']}}">
+      <div class="caption">
+        <h4>{{d['title']}}</h4>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+</body>
