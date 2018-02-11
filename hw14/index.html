@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>hw14</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  </head>
+
+<body>
+  <div class='container'>
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">Search Witness Records</span>
+    </nav>
+
+  <nav class="navbar navbar-light bg-faded">
+    <input id='date' class='form-control' type="text" placeholder="date">
+    <br>
+    <input id='city' class='form-control' type="text" placeholder="city">
+    <br>
+    <input id='state' class='form-control' type="text" placeholder="state">
+    <br>
+    <input id='country' class='form-control' type="text" placeholder="country">
+    <br>
+    <input id='shape' class='form-control' type="text" placeholder="shape">
+    <br>
+    <form class="form-inline">
+    <button id='submit' class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </nav>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <table id="app" class="table table-striped"></table>
+    <script type="text/javascript" src="search-table.js"></script>
+  </div>
+
+</body>
+</html>
