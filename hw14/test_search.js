@@ -20,7 +20,6 @@ var dataSet = [
 ];
 
 
-
 var $app = document.querySelector("#app");
 var $date = document.querySelector("#date");
 var $city = document.querySelector("#city");
@@ -33,6 +32,7 @@ $s_click.addEventListener("click", click);
 
 function click (event) {
   event.preventDefault();
+
 
   var tr_head = document.createElement("tr");
   var th = document.createElement("th");
