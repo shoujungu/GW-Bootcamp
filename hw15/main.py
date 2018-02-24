@@ -1,7 +1,7 @@
 from flask import Flask
+from flask import jsonify
 from flask import render_template
 import pandas as pd
-import json
 
 app = Flask(__name__)
 
@@ -15,8 +15,8 @@ def names():
     filename="belly_button_biodiversity_samples.csv"
     df=pd.read_csv(filename)
     cols=df.columns.values.tolist()[1:]
-    cols=json.dumps(cols)
-    return cols
+    #cols=json.dumps(cols)
+    return jsonify(cols)
 
 @app.route('/otu')
 def otu():
@@ -24,8 +24,8 @@ def otu():
     filename="belly_button_biodiversity_otu_id.csv"
     df=pd.read_csv(filename)
     otu=df['lowest_taxonomic_unit_found'].values.tolist()
-    otu=json.dumps(otu)
-    return otu
+    #otu=json.dumps(otu)
+    return jsonify(otu)
 
 @app.route('/metadata/<sample>')
 def metadata(sample):
@@ -35,8 +35,8 @@ def metadata(sample):
     df=pd.read_csv(filename)
     data=df.loc[df['SAMPLEID']==id,:].stack()
     data.index=data.index.droplevel()
-    data=json.dumps(data.to_dict())
-    return data
+    #data=json.dumps(data.to_dict())
+    return jsonify(data)
 
 @app.route('/wfreq/<sample>')
 def wfreq(sample):
@@ -58,8 +58,8 @@ def samples(sample):
     df=df.sort_values(sample, ascending=False)
     data=[{'otu_ids':df['otu_id'].values.tolist(), 'sample_values':df[sample].values.astype(str).tolist(),
     'description':df['lowest_taxonomic_unit_found'].values.astype(str).tolist()}]
-    data=json.dumps(data)
-    return data
+    #data=json.dumps(data)
+    return jsonify(data)
 
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run()
