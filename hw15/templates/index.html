@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Index</title>
+  </head>
+
+<body>
+<div class='container'>
+  <div class="jumbotron">
+    <h4 class="display-4"><center>Belly Button Biodiversity</center></h4>
+    <h4 class="display-4"><center>Dashboard</center></h4>
+    <h6 class="lead"><center>Use the interactive chart below to explore the dataset</center></h6>
+  </div>
+</div>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-3'>
+      <div class='container'>
+        <p>Select Sample:</p>
+        <select id="selDataset" onchange="optionChanged(this.value)"></select></div>
+        <br><br>
+        <ul class="list-group">
+          <li class="list-group-item" style='background-color:#b4cde2'>Sample Metadata</li>
+          <li id='age' class="list-group-item">AGE: 24</li>
+          <li id='bbtype' class="list-group-item">BBTYPE: I</li>
+          <li id='ethnicity' class="list-group-item">ETHNICITY: Caucasian</li>
+          <li id='gender' class="list-group-item">GENDER: F</li>
+          <li id='location' class="list-group-item">LOCATION: Beaufort/NC</li>
+          <li id='sampleid' class="list-group-item">SAMPLEID: 940</li>
+        </ul>
+    </div>
+    <div id='piechart' class='col-6'></div>
+  </div>
+
+  <div id='bubble' class='container'></div>
+
+  <script>
+   function optionChanged(v) {
+     Plotly.d3.json(`/samples/${v}`, function(error, data){
+       if (error) return console.warn(error);
+       let ids=data[0].otu_ids.slice(0,10);
+       let val=data[0].sample_values.slice(0,10);
+       let graphDiv=document.getElementById("piechart");
+       let update = {
+              labels: ids,
+              values: val,
+              type: 'pie'
+              };
+      let layout = {
+           height: 550,
+           width: 700
+         };
+      let pie_data=[update];
+      Plotly.newPlot(graphDiv, pie_data, layout);
+      let bubble=document.getElementById("bubble");
+      let trace_bubble={
+        x: data[0].otu_ids,
+        y: data[0].sample_values,
+        mode: 'markers',
+        marker:{size: data[0].sample_values, color: data[0].otu_ids},
+        text: data[0].description
+      };
+      let bubble_layout = {
+              showlegend: false,
+              height: 600,
+              width: 1200
+            };
+      let bubble_data=[trace_bubble];
+      Plotly.newPlot(bubble, bubble_data, bubble_layout);
+    });
+    Plotly.d3.json(`/metadata/${v}`, function(error, data){
+      if (error) return console.warn(error);
+      let age=document.getElementById("age");
+      let bbtype=document.getElementById("bbtype");
+      let ethnicity=document.getElementById("ethnicity");
+      let gender=document.getElementById("gender");
+      let location=document.getElementById("location");
+      let sampleid=document.getElementById("sampleid");
+      age.innerHTML=`AGE: ${data.AGE}`;
+      bbtype.innerHTML=`BBTYPE: ${data.BBTYPE}`;
+      ethnicity.innerHTML=`ETHNICITY: ${data.ETHNICITY}`;
+      gender.innerHTML=`GENDER: ${data.GENDER}`;
+      location.innerHTML=`LOCATION: ${data.LOCATION}`;
+      sampleid.innerHTML=`SAMPLEID: ${data.SAMPLEID}`;
+    });
+   };
+
+   Plotly.d3.json('/names', function(error, data){
+     if (error) return console.warn(error);
+     var selD=document.getElementById("selDataset");
+     for (var i=0; i<data.length; i++) {
+       let opt=document.createElement("option");
+       let att = document.createAttribute("value");
+       att.value = data[i];
+       opt.setAttributeNode(att);
+       opt.innerHTML=data[i];
+       selD.appendChild(opt);
+     };
+   });
+
+   let default_url='/samples/BB_940';
+   Plotly.d3.json(default_url, function(error, data){
+     //piechart
+    if (error) return console.warn(error);
+    let ids=data[0].otu_ids.slice(0,10);
+    let val=data[0].sample_values.slice(0,10);
+    let graphDiv=document.getElementById("piechart");
+    let trace_pie = {
+           labels: ids,
+           values: val,
+           type: 'pie'
+           };
+    let pie_layout = {
+         height: 550,
+         width: 700
+       };
+    let pie_data=[trace_pie];
+    Plotly.newPlot(graphDiv, pie_data, pie_layout);
+    //bubble chart
+    let bubble=document.getElementById("bubble");
+    let trace_bubble={
+      x: data[0].otu_ids,
+      y: data[0].sample_values,
+      mode: 'markers',
+      marker:{size: data[0].sample_values, color: data[0].otu_ids},
+      text: data[0].description
+    };
+    let bubble_layout = {
+            //showlegend: false,
+            height: 600,
+            width: 1200
+          };
+    let bubble_data=[trace_bubble];
+    Plotly.newPlot(bubble, bubble_data, bubble_layout);
+  });
+   </script>
+
+</div>
+
+</body>
+</html>
