@@ -2,6 +2,7 @@ from flask import Flask
 from flask import jsonify
 from flask import render_template
 import pandas as pd
+import os
 
 app = Flask(__name__)
 
@@ -61,5 +62,7 @@ def samples(sample):
     #data=json.dumps(data)
     return jsonify(data)
 
-if __name__=='__main__':
-    app.run()
+if __name__ == '__main__':
+    # Bind to PORT if defined, otherwise default to 5000.
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
