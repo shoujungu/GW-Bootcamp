@@ -37,7 +37,7 @@ def metadata(sample):
     data=df.loc[df['SAMPLEID']==id,:].stack()
     data.index=data.index.droplevel()
     #data=json.dumps(data.to_dict())
-    return jsonify(data)
+    return jsonify(data.to_dict())
 
 @app.route('/wfreq/<sample>')
 def wfreq(sample):
